@@ -26,7 +26,7 @@ This program generates a matrix-like raindrop animation where characters fall ve
 
 1. Clone the repository:
 
-   git clone https://github.com/yourusername/matrix-raindrop-animation.git
+   git clone https://github.com/PanagiotisKots/Matrix-Animation
 
     Compile the program using a C compiler (e.g., GCC):
 
