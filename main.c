@@ -87,8 +87,8 @@ int main() {
             printf("%c", CHARACTERS[rand() % strlen(CHARACTERS)]);
         }
 
-        // Wait for a short time to control animation speed
-        Sleep(20);  // Adjust delay for desired animation speed (faster for denser effect)
+        
+        Sleep(20);  
     }
 
     // Restore console text color before exiting
