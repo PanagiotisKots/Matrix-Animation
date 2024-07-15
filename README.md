@@ -31,7 +31,7 @@ This program generates a matrix-like raindrop animation where characters fall ve
     Compile the program using a C compiler (e.g., GCC):
 
 
-gcc matrix_raindrop.c -o matrix_raindrop
+gcc main.c -o matrix_raindrop
 
 Run the executable:
 
