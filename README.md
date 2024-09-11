@@ -49,3 +49,17 @@ Customization
         WIDTH and HEIGHT: Adjust the console window size.
         MAX_SPEED and MIN_SPEED: Control the speed range of raindrops.
         CHARACTERS: Set the characters used to represent raindrops.
+
+
+
+
+
+# Technologies Used
+
+| Technology   | Icon                                      | Description                        |
+|---------------|-------------------------------------------|------------------------------------|
+| C             | ![C](https://img.icons8.com/color/48/000000/c.png) | Programming language used for the application. |
+| Windows API   | ![Windows](https://img.icons8.com/color/48/000000/windows-10.png) | API for console manipulation and full-screen adjustments. |
+| GitHub        | ![GitHub](https://img.icons8.com/material-outlined/24/000000/github.png) | Platform for version control and code hosting. |
+
+
