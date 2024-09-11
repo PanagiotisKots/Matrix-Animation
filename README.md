@@ -1,11 +1,11 @@
-<div aligh = "center"> 
+<div align = "center"> 
 
 # Matrix-Animation In C
 
 
 </div>
 
-<div aligh = "center"> 
+<div align = "center"> 
 
    
 <img src = "https://i.ytimg.com/vi/irwY_HeIogk/sddefault.jpg">
