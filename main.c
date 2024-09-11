@@ -1,98 +1,96 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <Windows.h>
-#include <conio.h>
 #include <time.h>
-#include <string.h>
+#include <windows.h>
 
-#define WIDTH 190      // Width of console window
-#define HEIGHT 63      // Height of console window
-#define MAX_SPEED 15   // Maximum speed of raindrops
-#define MIN_SPEED 5    // Minimum speed of raindrops
-#define CHARACTERS "010101"
+// Width and height of the matrix
+#define WIDTH 80
+#define HEIGHT 25
 
-HANDLE console_handle;  // Console handle
-COORD screen_size = { WIDTH, HEIGHT };  // Console screen size
-CONSOLE_FONT_INFOEX font_info = { sizeof(CONSOLE_FONT_INFOEX) };
+// Defines the number of flips in Boolean Array 'switches'
+#define FLIPS_PER_LINE 5
 
-typedef struct {
-    int x;
-    int y;
-    int speed;
-} Raindrop;
+// Delay between two successive line prints in milliseconds
+#define SLEEP_TIME 50
 
-void setupConsole() {
-    console_handle = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleScreenBufferSize(console_handle, screen_size);
-    SetConsoleActiveScreenBuffer(console_handle);
-
-    // Setting console font size
-    CONSOLE_FONT_INFOEX font_info;
-    GetCurrentConsoleFontEx(console_handle, FALSE, &font_info);
-    font_info.dwFontSize.X = 8;   // Width of each character
-    font_info.dwFontSize.Y = 16;  // Height of each character
-    SetCurrentConsoleFontEx(console_handle, FALSE, &font_info);
-
-    // Set console window size
-    SMALL_RECT window_size = { 0, 0, WIDTH - 1, HEIGHT - 1 };
-    SetConsoleWindowInfo(console_handle, TRUE, &window_size);
+// Function to set text color
+void setColor(int textColor, int bgColor) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, (bgColor << 4) | textColor);
 }
 
-void initRaindrop(Raindrop* drop) {
-    drop->x = rand() % WIDTH;
-    drop->y = -(rand() % HEIGHT);
-    drop->speed = MIN_SPEED + rand() % (MAX_SPEED - MIN_SPEED + 1);
-}
+// Function to set the console to full screen and configure dimensions
+void setConsoleFullScreen() {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD newSize;
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
 
-void fallRaindrop(Raindrop* drop) {
-    drop->y += drop->speed;
-    if (drop->y >= HEIGHT) {
-        drop->y = -(rand() % HEIGHT);
-        drop->speed = MIN_SPEED + rand() % (MAX_SPEED - MIN_SPEED + 1);
-    }
+    // Get the current console screen buffer info
+    GetConsoleScreenBufferInfo(hConsole, &csbi);
+
+    // Set the console window to full screen
+    newSize.X = csbi.dwSize.X;
+    newSize.Y = csbi.dwSize.Y;
+    SetConsoleScreenBufferSize(hConsole, newSize);
+
+    // Adjust the console window size
+    SMALL_RECT windowSize = {
+        0,
+        0,
+        (SHORT)(newSize.X - 1),
+        (SHORT)(newSize.Y - 1)
+    };
+    SetConsoleWindowInfo(hConsole, TRUE, &windowSize);
+
+    // Move the cursor to the top-left of the console window
+    SetConsoleCursorPosition(hConsole, (COORD){0, 0});
 }
 
 int main() {
-    srand((unsigned int)time(NULL));  // Seed random number generator
-    setupConsole();  // Setup console window
+    int i = 0, x = 0;
 
-    Raindrop raindrops[600];  // Array of raindrops (increased density)
-    int i;
+    // Seed the random number generator with the current time
+    srand(time(NULL));
 
-    // Initialize raindrops
-    for (i = 0; i < 600; ++i) {  // Increase to 500 raindrops
-        initRaindrop(&raindrops[i]);
-    }
+    // Array to decide whether to print the character or not
+    int switches[WIDTH] = {0};
 
-    // Main loop
-    while (!_kbhit()) {  // Check for keyboard input
-        // Render raindrops
-        for (i = 0; i < 600; ++i) {  // Adjust loop for 500 raindrops
-            Raindrop* drop = &raindrops[i];
+    // Set of characters to print from
+    const char ch[] = "1234567890qwertyuiopasdfghjkl"
+                      "zxcvbnm,./';[]!@#$%^&*()-=_+";
+    const int l = sizeof(ch) - 1;
 
-            // Erase previous raindrop
-            COORD erase_position = { drop->x, drop->y - drop->speed };
-            erase_position.Y = (erase_position.Y + HEIGHT) % HEIGHT; // Wrap around if Y goes negative
-            SetConsoleCursorPosition(console_handle, erase_position);
-            printf(" ");
+    // Set console to green text on black background
+    setColor(10, 0);
 
-            // Update raindrop position
-            fallRaindrop(drop);
+    // Set console to full screen
+    setConsoleFullScreen();
 
-            // Draw new raindrop
-            COORD draw_position = { drop->x, drop->y };
-            draw_position.Y = (draw_position.Y + HEIGHT) % HEIGHT; // Wrap around if Y goes negative
-            SetConsoleCursorPosition(console_handle, draw_position);
-            SetConsoleTextAttribute(console_handle, FOREGROUND_GREEN);
-            printf("%c", CHARACTERS[rand() % strlen(CHARACTERS)]);
+    // Indefinite loop
+    while (1) {
+        // Loop over the width
+        // Increment by 2 gives a better effect
+        for (i = 0; i < WIDTH; i += 2) {
+            // Print character if switches[i] is 1
+            // Else print a blank character
+            if (switches[i])
+                printf("%c ", ch[rand() % l]);
+            else
+                printf("  ");
         }
 
-        
-        Sleep(20);  
-    }
+        // Flip the defined amount of Boolean values after each line
+        for (i = 0; i < FLIPS_PER_LINE; ++i) {
+            x = rand() % WIDTH;
+            switches[x] = !switches[x];
+        }
 
-    // Restore console text color before exiting
-    SetConsoleTextAttribute(console_handle, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+        // New line
+        printf("\n");
+
+        // Sleep for the specified time
+        Sleep(SLEEP_TIME);
+    }
 
     return 0;
 }
