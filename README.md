@@ -85,15 +85,15 @@ Customization
 
 | Contact Method | Icon                                      | Details                             |
 |----------------|-------------------------------------------|-------------------------------------|
-| Email          | ![Email](https://img.icons8.com/ios-filled/50/000000/email.png) | [your.email@example.com](mailto:your.email@example.com) |
+| Email          | ![Email](https://img.icons8.com/ios-filled/50/000000/email.png) | [pkotsorgios654@gmail.com.com](mailto:pkotsorgios654@gmail.com.com) |
 | LinkedIn       | ![LinkedIn](https://img.icons8.com/material-outlined/24/000000/linkedin.png) | [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile) |
 
 ## Creator Information
 
 | Information    | Icon                                      | Details                             |
 |----------------|-------------------------------------------|-------------------------------------|
-| Name           | ![User](https://img.icons8.com/material-outlined/24/000000/user.png) | Your Name |
-| GitHub         | ![GitHub](https://img.icons8.com/material-outlined/24/000000/github.png) | [github.com/yourusername](https://github.com/yourusername) |
+| Name           | ![User](https://img.icons8.com/material-outlined/24/000000/user.png) | Panagiotis Kotsorgios |
+| GitHub         | ![GitHub](https://img.icons8.com/material-outlined/24/000000/github.png) | [github.com/PanagiotisKots](https://github.com/PanagiotisKots) |
 
 
 
