@@ -86,7 +86,7 @@ Customization
 | Contact Method | Icon                                      | Details                             |
 |----------------|-------------------------------------------|-------------------------------------|
 | Email          | ![Email](https://img.icons8.com/ios-filled/50/000000/email.png) | [pkotsorgios654@gmail.com.com](mailto:pkotsorgios654@gmail.com.com) |
-| LinkedIn       | ![LinkedIn](https://img.icons8.com/material-outlined/24/000000/linkedin.png) | [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile) |
+| LinkedIn       | ![LinkedIn](https://img.icons8.com/material-outlined/24/000000/linkedin.png) | [linkedin.com/in/yourprofile](https://www.linkedin.com/in/panagiotis-kotsorgios-019ab9303/) |
 
 ## Creator Information
 
