@@ -1,8 +1,16 @@
+<div aligh = "center"> 
+
 # Matrix-Animation In C
 
+
+</div>
+
+<div aligh = "center"> 
+
+   
 <img src = "https://i.ytimg.com/vi/irwY_HeIogk/sddefault.jpg">
 
-
+</div>
 
 
 This project simulates the iconic "Matrix" movie raindrop effect in a console environment using C and Windows API.
